@@ -4,6 +4,7 @@
   "description": "app to search famous people around the world",
   "main": "index.js",
   "scripts": {
+    "ng": "ng",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
