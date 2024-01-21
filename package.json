@@ -1,0 +1,22 @@
+{
+  "name": "famous-map",
+  "version": "1.0.0",
+  "description": "app to search famous people around the world",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MagicDog12/famous-map.git"
+  },
+  "author": "Cristian Duran",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MagicDog12/famous-map/issues"
+  },
+  "homepage": "https://github.com/MagicDog12/famous-map#readme",
+  "devDependencies": {
+    "@angular/cli": "^17.1.0"
+  }
+}
