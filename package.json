@@ -4,6 +4,7 @@
   "description": "app to search famous people around the world",
   "main": "index.js",
   "scripts": {
+    "init": "ng new mapa-app --standalone false --routing false",
     "ng": "ng",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
