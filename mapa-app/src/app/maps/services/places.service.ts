@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class PlacesService {
 
   public userLocation?: [number, number];
+
   get isUserLocationReady(): boolean {
     return !!this.userLocation;
   }
