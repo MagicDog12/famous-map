@@ -12,6 +12,11 @@ export class MapPageComponent implements OnInit {
   ) {
 
   }
+
+  get isUserLocationReady() {
+    return this.placesService.isUserLocationReady;
+  }
+
   ngOnInit(): void {
     this.placesService.getUserLocation();
   }
