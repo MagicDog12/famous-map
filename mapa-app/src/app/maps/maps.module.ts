@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MapPageComponent } from './pages/map-page/map-page.component';
 import { MapViewComponent } from './components/map-view/map-view.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { AngularLogoComponent } from './components/angular-logo/angular-logo.component';
 
 
 
@@ -11,6 +12,7 @@ import { LoadingComponent } from './components/loading/loading.component';
     MapPageComponent,
     MapViewComponent,
     LoadingComponent,
+    AngularLogoComponent,
   ],
   imports: [
     CommonModule,
