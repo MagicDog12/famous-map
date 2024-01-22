@@ -1,0 +1,6 @@
+button {
+  display: block;
+  margin: 3px;
+  width: 100%;
+  z-index: 10;
+}

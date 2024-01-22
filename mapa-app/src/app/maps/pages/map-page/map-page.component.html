@@ -1,7 +1,10 @@
 <app-loading *ngIf="!isUserLocationReady;else mapReady"></app-loading>
 <ng-template #mapReady>
   <app-map-view></app-map-view>
-  <app-btn-my-location></app-btn-my-location>
+  <div class="buttons">
+    <app-btn-my-location></app-btn-my-location>
+    <app-btn-world-location></app-btn-world-location>
+  </div>
   <app-search-bar></app-search-bar>
 </ng-template>
 
