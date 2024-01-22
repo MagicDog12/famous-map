@@ -3,6 +3,7 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 
 import { AppComponent } from './app.component';
 import { MapsModule } from './maps/maps.module';
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -10,7 +11,8 @@ import { MapsModule } from './maps/maps.module';
   ],
   imports: [
     BrowserModule,
-    MapsModule
+    MapsModule,
+    HttpClientModule
   ],
   providers: [
     provideClientHydration()
