@@ -1,0 +1,5 @@
+.places {
+  font-size: small;
+  max-height: 50vh;
+  overflow-y: auto;
+}
