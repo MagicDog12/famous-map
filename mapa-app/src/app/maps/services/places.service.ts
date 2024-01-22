@@ -42,7 +42,10 @@ export class PlacesService {
   }
 
   getPlacesByQuery(query: string = "") {
-    // TODO: evaluar string vacio
+    if( query.length === 0) {
+      this.places = [];
+      this.isLoadingPlaces = false;
+    }
     if(!this.userLocation) throw Error('No hay userLocation');
     this.isLoadingPlaces = true;
     this.placesApi.get<PlacesResponse>(`/${query}.json`, {
