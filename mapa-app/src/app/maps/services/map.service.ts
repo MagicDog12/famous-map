@@ -16,11 +16,11 @@ export class MapService {
     this.map = map;
   }
 
-  flyTo( coords: LngLatLike) {
+  flyTo( coords: LngLatLike, zoom: number) {
     if (!this.isMapReady) throw Error('El mapa no está inicializado');
 
     this.map?.flyTo({
-      zoom: 14,
+      zoom: zoom,
       center: coords
     });
   }
