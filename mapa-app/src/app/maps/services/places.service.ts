@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { rejects } from 'assert';
 
 @Injectable({
   providedIn: 'root'
@@ -12,22 +11,26 @@ export class PlacesService {
   }
 
   constructor() {
-    this.getUserLocation();
   }
 
   public async getUserLocation(): Promise<[number, number]> {
-    return new Promise((resolve, reject) => {
-      navigator.geolocation.getCurrentPosition(
-        ({ coords }) => {
-          this.userLocation = [coords.longitude, coords.latitude];
-          resolve(this.userLocation);
-        },
-        (err) => {
-          alert('No se pudo obtener la geolocalización');
-          console.log(err);
-          reject();
-        }
-      )
-    })
+    if (typeof navigator !== 'undefined') {
+      return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(
+          ({ coords }) => {
+            this.userLocation = [coords.longitude, coords.latitude];
+            resolve(this.userLocation);
+          },
+          (err) => {
+            alert('No se pudo obtener la geolocalización');
+            console.log(err);
+            reject();
+          }
+        )
+      });
+    } else {
+      return Promise.reject('Navigator no funciona fuera del navegador.');
+    }
+
   }
 }
