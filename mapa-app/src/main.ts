@@ -1,9 +1,9 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppModule } from './app/app.module';
-import mapboxgl from 'mapbox-gl';
+import Mapboxgl from 'mapbox-gl';
 
-mapboxgl.accessToken = 'pk.eyJ1IjoiY3Jpc3RpYW4wMTIiLCJhIjoiY2xyb2NubWE2MWpsMDJqa2k3M3NzMGhsbyJ9.LO9_4zw5Rv7nP3f_IA6t2A';
+Mapboxgl.accessToken = 'pk.eyJ1IjoiY3Jpc3RpYW4wMTIiLCJhIjoiY2xyb2NubWE2MWpsMDJqa2k3M3NzMGhsbyJ9.LO9_4zw5Rv7nP3f_IA6t2A';
 
 
 if (!navigator.geolocation) {
