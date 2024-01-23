@@ -23,6 +23,10 @@ export class PlacesService {
   ) {
   }
 
+  public deletePlaces() {
+    this.places = [];
+  }
+
   public async getUserLocation(): Promise<[number, number]> {
     if (typeof navigator !== 'undefined') {
       return new Promise((resolve, reject) => {
