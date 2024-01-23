@@ -79,7 +79,6 @@ export class MapService {
   private drawPolyline(route: Route) {
     if (!this.map) throw Error('Mapa no inicializado');
 
-    console.log({ kms: route.distance / 1000, duration: route.duration / 60 });
     const coords = route.geometry.coordinates;
     const bounds = new LngLatBounds();
     coords.forEach(([lng, lat]) => {
@@ -125,5 +124,24 @@ export class MapService {
         'line-width': 3
       }
     });
+
+    const popup = new Popup({ closeButton: false, closeOnClick: false })
+      .setHTML(`
+        <span><strong>Distancia:</strong> ${(route.distance / 1000).toFixed(2)} kms.</span><br />
+        <span><strong>Duración:</strong> ${Math.floor(route.duration / 60)} min y ${Math.floor(route.duration%60)} seg.</span>
+      `);
+
+    this.map.on('mouseover', 'RouteString', (event) => {
+      this.map!.getCanvas().style.cursor = 'pointer';
+      const coordinates = event.lngLat;
+      popup.setLngLat(coordinates).addTo(this.map!);
+    }
+    );
+
+    this.map.on('mouseleave', 'RouteString', () => {
+      this.map!.getCanvas().style.cursor = '';
+      popup.remove();
+    }
+    );
   }
 }
