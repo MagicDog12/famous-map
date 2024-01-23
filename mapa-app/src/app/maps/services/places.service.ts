@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Feature, PlacesResponse } from '../interfaces/places';
 import { PlacesApiClient } from '../api';
+import { MapService } from './map.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,7 @@ export class PlacesService {
 
   constructor(
     private placesApi: PlacesApiClient,
+    private mapService: MapService
   ) {
   }
 
@@ -42,11 +44,11 @@ export class PlacesService {
   }
 
   getPlacesByQuery(query: string = "") {
-    if( query.length === 0) {
+    if (query.length === 0) {
       this.places = [];
       this.isLoadingPlaces = false;
     }
-    if(!this.userLocation) throw Error('No hay userLocation');
+    if (!this.userLocation) throw Error('No hay userLocation');
     this.isLoadingPlaces = true;
     this.placesApi.get<PlacesResponse>(`/${query}.json`, {
       params: {
@@ -54,8 +56,8 @@ export class PlacesService {
       }
     })
       .subscribe(resp => {
-        console.log(resp.features);
         this.places = resp.features;
+        this.mapService.createMarkersFromPlaces(this.places);
         this.isLoadingPlaces = false;
       });
   }
