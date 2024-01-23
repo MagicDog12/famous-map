@@ -144,4 +144,13 @@ export class MapService {
     }
     );
   }
+
+  clearPolyline() {
+    if (!this.map) throw Error('Mapa no inicializado');
+
+    if (this.map.getLayer('RouteString')) {
+      this.map.removeLayer('RouteString');
+      this.map.removeSource('RouteString');
+    }
+  }
 }

@@ -44,6 +44,7 @@ export class PlacesService {
   }
 
   getPlacesByQuery(query: string = "") {
+    this.mapService.clearPolyline();
     if (query.length === 0) {
       this.places = [];
       this.isLoadingPlaces = false;
