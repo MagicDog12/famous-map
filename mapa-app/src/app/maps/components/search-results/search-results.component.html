@@ -8,7 +8,8 @@
     [class.active]="place.id === selectedId">
     <h6>{{place.text_es}}</h6>
     <p> {{place.place_name}}</p>
-    <button class="btn btn-sm" [ngClass]="(place.id === selectedId)? 'btn-outline-light' : 'btn-outline-primary'">
+    <button class="btn btn-sm" (click)="getDirections(place)"
+      [ngClass]="(place.id === selectedId)? 'btn-outline-light' : 'btn-outline-primary'">
       Direcciones
     </button>
   </li>
