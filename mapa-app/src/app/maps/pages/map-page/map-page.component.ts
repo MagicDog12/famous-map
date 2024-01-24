@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PlacesService } from '../../services';
+import { MediaQueryService, PlacesService } from '../../services';
 
 @Component({
   selector: 'app-map-page',
@@ -7,8 +7,12 @@ import { PlacesService } from '../../services';
   styleUrl: './map-page.component.css'
 })
 export class MapPageComponent implements OnInit {
+
+  public smallSizeDisplay: boolean = false;
+
   constructor(
-    private placesService: PlacesService
+    private placesService: PlacesService,
+    private mediaQueryService: MediaQueryService,
   ) {
 
   }
@@ -19,6 +23,8 @@ export class MapPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.placesService.getUserLocation();
+    console.log("Pantalla: ", this.mediaQueryService.sizeDisplay)
+    if( this.mediaQueryService.sizeDisplay === 'phone') this.smallSizeDisplay = true;
   }
 
 }

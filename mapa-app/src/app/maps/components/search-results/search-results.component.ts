@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MapService, PlacesService } from '../../services';
 import { Feature } from '../../interfaces/places';
 
@@ -10,6 +10,8 @@ import { Feature } from '../../interfaces/places';
 export class SearchResultsComponent {
 
   public selectedId: string = '';
+  @Input()
+  smallSizeDisplay!: boolean;
 
   constructor(
     private placesService: PlacesService,
@@ -36,7 +38,7 @@ export class SearchResultsComponent {
 
     const start = this.placesService.userLocation;
     const end = place.center as [number, number];
-    this.mapService.getRouteBetweenPoints(start, end);
+    this.mapService.getRouteBetweenPoints(start, end, this.smallSizeDisplay);
     this.placesService.deletePlaces();
   }
 }

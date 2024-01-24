@@ -35,7 +35,7 @@ export class MapService {
     });
   }
 
-  createMarkersFromPlaces(places: Feature[], userLocation: [number, number]) {
+  createMarkersFromPlaces(places: Feature[], userLocation: [number, number], smallSizeDisplay: boolean) {
     if (!this.map) throw Error('Mapa no inicializado');
 
     this.markers.forEach(marker => marker.remove());
@@ -64,19 +64,26 @@ export class MapService {
     newMarkers.forEach(marker => {
       bounds.extend(marker.getLngLat());
     });
-    this.map.fitBounds(bounds, {
-      padding: 200
-    });
+    if (smallSizeDisplay) {
+      this.map.fitBounds(bounds, {
+        padding: 20
+      });
+    } else {
+      this.map.fitBounds(bounds, {
+        padding: 200
+      });
+    }
+
   }
 
-  getRouteBetweenPoints(start: [number, number], end: [number, number]) {
+  getRouteBetweenPoints(start: [number, number], end: [number, number], smallSizeDisplay: boolean) {
     this.directionsApi.get<DirectionsResponse>(`/${start.join(',')};${end.join(',')}`)
       .subscribe(resp => {
-        this.drawPolyline(resp.routes[0]);
+        this.drawPolyline(resp.routes[0], smallSizeDisplay);
       })
   }
 
-  private drawPolyline(route: Route) {
+  private drawPolyline(route: Route, smallSizeDisplay: boolean) {
     if (!this.map) throw Error('Mapa no inicializado');
 
     const coords = route.geometry.coordinates;
@@ -85,9 +92,15 @@ export class MapService {
       bounds.extend([lng, lat]);
     })
 
-    this.map.fitBounds(bounds, {
-      padding: 200
-    })
+    if (smallSizeDisplay) {
+      this.map.fitBounds(bounds, {
+        padding: 20
+      });
+    } else {
+      this.map.fitBounds(bounds, {
+        padding: 200
+      });
+    }
 
     const sourceData: AnySourceData = {
       type: 'geojson',
@@ -128,7 +141,7 @@ export class MapService {
     const popup = new Popup({ closeButton: false, closeOnClick: false })
       .setHTML(`
         <span><strong>Distancia:</strong> ${(route.distance / 1000).toFixed(2)} kms.</span><br />
-        <span><strong>Duración:</strong> ${Math.floor(route.duration / 60)} min y ${Math.floor(route.duration%60)} seg.</span>
+        <span><strong>Duración:</strong> ${Math.floor(route.duration / 60)} min y ${Math.floor(route.duration % 60)} seg.</span>
       `);
 
     this.map.on('mouseover', 'RouteString', (event) => {

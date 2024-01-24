@@ -47,7 +47,7 @@ export class PlacesService {
     }
   }
 
-  getPlacesByQuery(query: string = "") {
+  getPlacesByQuery(query: string = "", smallSizeDisplay: boolean) {
     this.mapService.clearPolyline();
     if (query.length === 0) {
       this.places = [];
@@ -62,7 +62,7 @@ export class PlacesService {
     })
       .subscribe(resp => {
         this.places = resp.features;
-        this.mapService.createMarkersFromPlaces(this.places, this.userLocation!);
+        this.mapService.createMarkersFromPlaces(this.places, this.userLocation!, smallSizeDisplay);
         this.isLoadingPlaces = false;
       });
   }
